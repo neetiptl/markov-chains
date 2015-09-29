@@ -8,7 +8,7 @@ def open_and_read_file(file_path):
     the file's contents as one string of text.
     """
 
-    # your code goes here
+    text = open(file_path).read()
 
     return text
 
@@ -27,9 +27,15 @@ def make_chains(text_string):
     """
 
     chains = {}
-
-    # your code goes here
-
+    split_text = text_string.split()
+    for i in range(len(split_text)-2):
+        current_key = (split_text[i], split_text[i +1])
+        third_word = split_text[i+2]
+        if current_key in chains:
+            chains[current_key].append(third_word)
+        else:
+            chains[current_key] = [third_word]
+    print chains
     return chains
 
 
