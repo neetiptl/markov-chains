@@ -1,4 +1,5 @@
 from random import choice
+from sys import argv
 
 def open_and_read_file(file_path):
     """Takes file path as string; returns text as string.
@@ -6,7 +7,7 @@ def open_and_read_file(file_path):
     Takes a string that is a file path, opens the file, and turns
     the file's contents as one string of text.
     """
-
+    file_path = argv[1]
     text = open(file_path).read()
 
     return text
