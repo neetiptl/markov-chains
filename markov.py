@@ -1,6 +1,5 @@
 from random import choice
 
-
 def open_and_read_file(file_path):
     """Takes file path as string; returns text as string.
 
@@ -29,13 +28,13 @@ def make_chains(text_string):
     chains = {}
     split_text = text_string.split()
     for i in range(len(split_text)-2):
-        current_key = (split_text[i], split_text[i +1])
+        current_key = (split_text[i], split_text[i+1])
         third_word = split_text[i+2]
         if current_key in chains:
             chains[current_key].append(third_word)
         else:
             chains[current_key] = [third_word]
-    print chains
+
     return chains
 
 
@@ -43,13 +42,18 @@ def make_text(chains):
     """Takes dictionary of markov chains; returns random text."""
 
     text = ""
-
-    # your code goes here
-
+    print chains
+    # start = ()
+    start = choice(chains.keys())
+    while start in chains:
+        third = choice(chains[start])
+        text = text + ' ' + third
+        start = (start[1], third)
+    # text = text + ' ' + start[1]    
     return text
 
 
-input_path = "green-eggs.txt"
+input_path = "gettysburg.txt"
 
 # Open the file and turn it into one long string
 input_text = open_and_read_file(input_path)
